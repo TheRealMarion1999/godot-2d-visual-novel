@@ -7,7 +7,7 @@ extends Node
 signal display_finished
 
 ## Maps animation text ids to a function that animates a character sprite.
-const ANIMATIONS := {"enter": "_enter", "leave": "_leave"}
+const ANIMATIONS := {"enter": "_enter", "leave": "_leave", "test": "_test"}
 const SIDE := {LEFT = "left", RIGHT = "right"}
 const COLOR_WHITE_TRANSPARENT = Color(1.0, 1.0, 1.0, 0.0)
 
@@ -18,18 +18,17 @@ var _tween: Tween
 @onready var _left_sprite: Sprite2D = $Left
 @onready var _right_sprite: Sprite2D = $Right
 
-
 func _ready() -> void:
 	_left_sprite.hide()
 	_right_sprite.hide()
 	#_tween.finished.connect(_on_tween_finished)
 
 
-func _unhandled_input(event: InputEvent) -> void:
+#func _unhandled_input(event: InputEvent) -> void:
 	# If the player presses enter before the character animations ended, we seek to the end.
-	if event.is_action_pressed("ui_accept") and _tween and _tween.is_running():
-		_tween.custom_step(100.0)
-		_tween.kill()
+	#if event.is_action_pressed("ui_accept") and _tween and _tween.is_running():
+		#_tween.custom_step(100.0)
+		#_tween.kill()
 
 
 func display(character: Character, side: String = SIDE.LEFT, expression := "", animation := "") -> void:
@@ -93,7 +92,6 @@ func _leave(from_side: String, sprite: Sprite2D) -> void:
 	).set_delay(.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_LINEAR).from(Color.WHITE)
 	_tween.start()
 	_tween.seek(0.0)
-
 
 func _on_tween_finished() -> void:
 	display_finished.emit()

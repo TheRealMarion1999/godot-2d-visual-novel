@@ -10,12 +10,12 @@ func _ready() -> void:
 	# The token list
 	var tokens: Array = lexer.tokenize(text)
 
-	# print(tokens)
+	print(tokens)
 
 	# The syntax tree
 	var tree: SceneParser.SyntaxTree = parser.parse(tokens)
 
-	# print(tree.values)
+	print(tree.values)
 
 	# The finished .scene script
 	var script: SceneTranspiler.DialogueTree = transpiler.transpile(tree, 0)

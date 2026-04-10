@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://c3fdyxa55lvir"]
 
-[ext_resource type="Script" path="res://TextBox/TextBox.gd" id="1"]
-[ext_resource type="PackedScene" path="res://TextBox/BlinkingArrow.tscn" id="2"]
+[ext_resource type="Script" uid="uid://ebyqs631jhvm" path="res://TextBox/TextBox.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://b5e00xpnn1hps" path="res://TextBox/BlinkingArrow.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c52hncojts061" path="res://TextBox/ChoiceSelector.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://c7cr0spg4jdwa" path="res://Theme/theme.tres" id="4"]
 [ext_resource type="Texture2D" uid="uid://bilnnj5xfrc7y" path="res://TextBox/text-box.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://dbhlehwmabg7n" path="res://TextBox/character-name-box.png" id="6"]
-[ext_resource type="Script" path="res://TextBox/FadingControl.gd" id="8"]
-[ext_resource type="PackedScene" path="res://TextBox/SkipButton.tscn" id="9"]
+[ext_resource type="Script" uid="uid://23sbq5owk5w1" path="res://TextBox/FadingControl.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://kccepl8ufij4" path="res://TextBox/SkipButton.tscn" id="9"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "fade_in"
@@ -193,9 +193,9 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_40ejx"]
 _data = {
-"fade_in": SubResource("1"),
-"fade_out": SubResource("2"),
-"setup": SubResource("3")
+&"fade_in": SubResource("1"),
+&"fade_out": SubResource("2"),
+&"setup": SubResource("3")
 }
 
 [node name="TextBox" type="TextureRect"]

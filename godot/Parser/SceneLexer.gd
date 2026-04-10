@@ -173,14 +173,16 @@ func tokenize(input_text: String) -> Array[Token]:
 		elif character.is_valid_identifier():
 			tokens.append(_tokenize_symbol(script))
 		else:
-			push_error("Found unidentified character: %s : %s" % [character, character.unicode_at(0)])
+			if character == "	":
+				push_warning("unneeded indent found at: %s" % character.unicode_at(0))
+			else:
+				push_error("Found unidentified character: %s : %s" % [character, character.unicode_at(0)])
 
 		script.move_to_next_character()
 
 	if tokens.back().type != TOKEN_TYPES.NEWLINE:
 		# Add a NEWLINE token so the final line is always properly delimited.
 		tokens.append(Token.new(TOKEN_TYPES.NEWLINE, ""))
-
 	return tokens
 
 

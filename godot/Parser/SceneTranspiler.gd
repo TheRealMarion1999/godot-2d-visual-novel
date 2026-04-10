@@ -301,9 +301,12 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 
 	if expression.value == SceneLexer.BUILT_IN_COMMANDS.BACKGROUND:
 		var background: String = expression.arguments[0].value
-
 		command_node = BackgroundCommandNode.new(dialogue_tree.index + 1, background)
-		command_node.transition = expression.arguments[1].value
+		
+		if expression.arguments.size() > 1:
+			command_node.transition = expression.arguments[1].value
+		else:
+			command_node.transition = ""
 
 	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.SCENE:
 		# For now, the command only works when next_scene is used as an argument.
@@ -344,7 +347,6 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.MARK:
 		var new_jump_point: String = expression.arguments[0].value
 		_add_jump_point(new_jump_point, dialogue_tree.index)
-
 		# Handle any unresolved jump nodes that point to this jump point
 		# Use a `temp` variable because modifying an array while also looping
 		# through it can get buggy.
@@ -353,8 +355,8 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 			if jump_node.jump_point == new_jump_point:
 				jump_node.next = dialogue_tree.index
 				temp.erase(jump_node)
-
 		_unresolved_jump_nodes = temp
+
 	else:
 		push_error("Unrecognized command type `%s`" % expression.value)
 

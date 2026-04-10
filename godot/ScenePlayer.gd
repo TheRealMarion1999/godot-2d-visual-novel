@@ -32,18 +32,21 @@ func run_scene() -> void:
 			if "character" in node and node.character != ""
 			else ResourceDB.get_narrator()
 		)
+		print(node)
 
 		if node is SceneTranspiler.BackgroundCommandNode:
 			var bg: Background = ResourceDB.get_background(node.background)
 			_background.texture = bg.texture
 
 		# Displaying a character.
-		if "character" in node:
+		if "character" in node && node.character != "":
 			var side: String = node.side if "side" in node else CharacterDisplayer.SIDE.LEFT
 			var animation: String = node.animation
 			var expression: String = node.expression
 			_character_displayer.display(character, side, expression, animation)
+			##This code is seemingly unreachable?
 			if not "line" in node:
+				print("test")
 				await _character_displayer.display_finished
 
 		# Normal text reply.
@@ -57,6 +60,9 @@ func run_scene() -> void:
 			if node.transition != "":
 				call(TRANSITIONS[node.transition])
 				await self.transition_finished
+			else:
+				call("default")
+				await transition_finished
 			key = node.next
 
 		# Manage variables
@@ -137,6 +143,11 @@ func _appear_async() -> void:
 	await _text_box.fade_in_async()
 	transition_finished.emit()
 
+func default() -> void:
+	_anim_player.play("default")
+	await _anim_player.animation_finished
+	await _text_box.fade_in_async()
+	transition_finished.emit()
 
 func _disappear_async() -> void:
 	#await _text_box.fade_out_async().completed
@@ -147,7 +158,7 @@ func _disappear_async() -> void:
 
 
 ## Saves a dictionary representing a scene to the disk using `var2str`.
-func _store_scene_data(data: Dictionary, path: String) -> void:
+func _store_scene_data(_data: Dictionary, path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(var_to_str(_scene_data))
 	file.close()

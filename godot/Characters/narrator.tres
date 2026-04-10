@@ -1,14 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://dsln2huih5io7"]
 
-[ext_resource path="res://Characters/Character.gd" type="Script" id=1]
+[ext_resource type="Script" uid="uid://bn4x58vdls101" path="res://Characters/Character.gd" id="1"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 id = "narrator"
 display_name = "Narrator"
 bio = ""
 age = 0
 default_image = "neutral"
 images = {
-"neutral": null
+&"neutral": null
 }
