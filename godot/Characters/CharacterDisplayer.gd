@@ -23,12 +23,11 @@ func _ready() -> void:
 	_right_sprite.hide()
 	#_tween.finished.connect(_on_tween_finished)
 
-
-#func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	# If the player presses enter before the character animations ended, we seek to the end.
-	#if event.is_action_pressed("ui_accept") and _tween and _tween.is_running():
-		#_tween.custom_step(100.0)
-		#_tween.kill()
+	if event.is_action_pressed("ui_accept") and _tween and _tween.is_running():
+		_tween.custom_step(100.0)
+		_tween.kill()
 
 
 func display(character: Character, side: String = SIDE.LEFT, expression := "", animation := "") -> void:

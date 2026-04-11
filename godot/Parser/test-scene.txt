@@ -5,15 +5,11 @@ background dani_bedroom
 sophia happy enter left "Hi there! My name's Sophia. How about you?"
 dani neutral enter right "Hey, I'm Dani."
 
-sophia neutral
-
-"Narration Lines Cause Dani to Disappear!"
-
 choice:
 	"Start over":
 		mark rethink
-		"Starting over?"	
-		choice:	
+		"Starting over?"
+		choice:
 			"Yes, I'm sure.":
 				"Alrighty then."
 				set started_over true
@@ -43,7 +39,7 @@ sophia "Well, let's continue."
 # Comments work!
 # "This is a commented out line"
 "Want to start over?" # Inline comment! 
-choice:	
+choice:
 	"Yes":
 		set started_over true
 		jump jump_location

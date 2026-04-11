@@ -32,7 +32,6 @@ func run_scene() -> void:
 			if "character" in node and node.character != ""
 			else ResourceDB.get_narrator()
 		)
-		print(node)
 
 		if node is SceneTranspiler.BackgroundCommandNode:
 			var bg: Background = ResourceDB.get_background(node.background)
@@ -68,6 +67,7 @@ func run_scene() -> void:
 		# Manage variables
 		elif node is SceneTranspiler.SetCommandNode:
 			Variables.add_variable(node.symbol, node.value)
+			##TODO: load a snapshot of what the BG, last line and all sprites looked like!
 			key = node.next
 
 		# Change to another scene

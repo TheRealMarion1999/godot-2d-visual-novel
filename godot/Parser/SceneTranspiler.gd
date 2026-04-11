@@ -344,6 +344,8 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 		var value = expression.arguments[1].value
 		command_node = SetCommandNode.new(dialogue_tree.index + 1, symbol, value)
 
+	#TODO: copy the textures of the ScenePlayer's Background and CharacterDisplayer Nodes during the mark,
+	#so that when a jump is performed, no visual errors will occur.
 	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.MARK:
 		var new_jump_point: String = expression.arguments[0].value
 		_add_jump_point(new_jump_point, dialogue_tree.index)

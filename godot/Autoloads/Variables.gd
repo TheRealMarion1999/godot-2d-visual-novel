@@ -2,29 +2,58 @@
 extends Node
 
 const SAVE_FILE_LOCATION := "user://2DVisualNovelDemo.save"
+var other_data: Dictionary
 
+func path_integrity_checker(path: String):
+	if not FileAccess.file_exists(path):
+		push_error("Could not find the script with path: %s" % path)
+		return false
+	else: return true
+
+##TODO: If the file is empty: create a dict with _name and value. 
+#If the file isn't empty, open and read the file's content and convert it to a dictionary, then add _name and value
 
 func add_variable(_name: String, value) -> void:
-	var save_file := FileAccess.open(SAVE_FILE_LOCATION, FileAccess.WRITE_READ)
+	var data: Dictionary = {}
+	if save_file_is_empty(SAVE_FILE_LOCATION):
+		write_dictionary_data_to_json(SAVE_FILE_LOCATION, data, _name, value)
+	else:
+		data = copy_file_data_to_dictionary(SAVE_FILE_LOCATION)
+		write_dictionary_data_to_json(SAVE_FILE_LOCATION, data, _name, value)
+	return
 
+func save_file_is_empty(path: String):
+	if path_integrity_checker(path):
+		var save_file := FileAccess.open(path, FileAccess.READ)
+		if save_file.get_as_text() == "":
+			save_file.close()
+			return true
+		else: 
+			save_file.close()
+			return false
+
+func write_dictionary_data_to_json(path: String, data: Dictionary, _name:String, value):
+	if _name != "":
+		data[_name] = _evaluate(value)
+		var save_file := FileAccess.open(path, FileAccess.WRITE)
+		var json = JSON.new()
+		var error = json.parse(JSON.stringify(data))
+		if error != OK:
+			printerr(json.get_error_message())
+		else:
+			print(json.data)
+			save_file.store_line(JSON.stringify(json.data))
+	else:
+		printerr("Null variable name")
+
+func copy_file_data_to_dictionary(path):
+	var save_file := FileAccess.open(path, FileAccess.READ)
 	var json = JSON.new()
 	var error = json.parse(save_file.get_as_text())
-	
-	var data: Dictionary = (
-		json.data
-		if error == OK
-		else {variables = {}}
-	)
-
-	if _name != "":
-		if not data.has("variables"):
-			data["variables"] = {}
-
-		data["variables"][_name] = _evaluate(value)
-
-	save_file.store_line(JSON.stringify(data))
-	save_file.close()
-
+	if error != OK:
+		printerr(json.get_error_message())
+	else:
+		return json.data
 
 func get_stored_variables_list() -> Dictionary:
 	# Stop if the save file doesn't exist
@@ -43,7 +72,7 @@ func get_stored_variables_list() -> Dictionary:
 
 	save_file.close()
 
-	return data.variables
+	return data
 
 
 # Used to evaluate the variables' values
