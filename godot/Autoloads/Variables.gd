@@ -2,16 +2,6 @@
 extends Node
 
 const SAVE_FILE_LOCATION := "user://2DVisualNovelDemo.save"
-var other_data: Dictionary
-
-func path_integrity_checker(path: String):
-	if not FileAccess.file_exists(path):
-		push_error("Could not find the script with path: %s" % path)
-		return false
-	else: return true
-
-##TODO: If the file is empty: create a dict with _name and value. 
-#If the file isn't empty, open and read the file's content and convert it to a dictionary, then add _name and value
 
 func add_variable(_name: String, value) -> void:
 	var data: Dictionary = {}
@@ -22,6 +12,14 @@ func add_variable(_name: String, value) -> void:
 		write_dictionary_data_to_json(SAVE_FILE_LOCATION, data, _name, value)
 	return
 
+#Ensures that the file path is pointing to an appropriate location on disk
+func path_integrity_checker(path: String):
+	if not FileAccess.file_exists(path):
+		push_error("Path %s does not exist" % path)
+		return false
+	else: return true
+
+#Checks if the file has contents to read from
 func save_file_is_empty(path: String):
 	if path_integrity_checker(path):
 		var save_file := FileAccess.open(path, FileAccess.READ)
@@ -32,6 +30,7 @@ func save_file_is_empty(path: String):
 			save_file.close()
 			return false
 
+#writes the data of input dictionary to a save file on disk
 func write_dictionary_data_to_json(path: String, data: Dictionary, _name:String, value):
 	if _name != "":
 		data[_name] = _evaluate(value)
@@ -46,6 +45,7 @@ func write_dictionary_data_to_json(path: String, data: Dictionary, _name:String,
 	else:
 		printerr("Null variable name")
 
+#copies the data of a save file on disk as a dictionary
 func copy_file_data_to_dictionary(path):
 	var save_file := FileAccess.open(path, FileAccess.READ)
 	var json = JSON.new()
