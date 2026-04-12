@@ -40,7 +40,6 @@ func write_dictionary_data_to_json(path: String, data: Dictionary, _name:String,
 		if error != OK:
 			printerr(json.get_error_message())
 		else:
-			print(json.data)
 			save_file.store_line(JSON.stringify(json.data))
 	else:
 		printerr("Null variable name")

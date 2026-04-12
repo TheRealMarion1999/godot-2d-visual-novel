@@ -43,9 +43,7 @@ func run_scene() -> void:
 			var animation: String = node.animation
 			var expression: String = node.expression
 			_character_displayer.display(character, side, expression, animation)
-			##This code is seemingly unreachable?
 			if not "line" in node:
-				print("test")
 				await _character_displayer.display_finished
 
 		# Normal text reply.
