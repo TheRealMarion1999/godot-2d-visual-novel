@@ -94,8 +94,8 @@ func run_scene() -> void:
 
 			# Evaluate the if's condition
 			if (
-				variables_list.has(node.if_block.condition.value)
-				and variables_list[node.if_block.condition.value]
+				variables_list["variables"].has(node.if_block.condition.value)
+				and variables_list["variables"][node.if_block.condition.value]
 			):
 				key = node.if_block.next
 			else:
@@ -106,8 +106,8 @@ func run_scene() -> void:
 				# Evaluate the elif's conditions
 				for block in node.elif_blocks:
 					if (
-						variables_list.has(block.condition.value)
-						and variables_list[block.condition.value]
+						variables_list["variables"].has(block.condition.value)
+						and variables_list["variables"][block.condition.value]
 					):
 						key = block.next
 						elif_condition_fulfilled = true
