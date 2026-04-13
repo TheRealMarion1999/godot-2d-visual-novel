@@ -1,5 +1,3 @@
-set test_var true
-set test_var_2 true
 mark jump_location
 
 background dani_bedroom 

@@ -25,16 +25,6 @@ func add_variable(_name: String, value) -> void:
 	save_file.close()
 	return
 
-#copies the data of a save file on disk as a dictionary
-func copy_file_data_to_dictionary(path):
-	var save_file := FileAccess.open(path, FileAccess.READ)
-	var json = JSON.new()
-	var error = json.parse(save_file.get_as_text())
-	if error != OK:
-		printerr(json.get_error_message())
-	else:
-		return json.data
-
 func get_stored_variables_list() -> Dictionary:
 	# Stop if the save file doesn't exist
 	if not FileAccess.file_exists(SAVE_FILE_LOCATION):
