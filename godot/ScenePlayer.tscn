@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://c3fdyxa55lvir" path="res://TextBox/TextBox.tscn" id="1"]
 [ext_resource type="Script" uid="uid://5sitmarj6d0k" path="res://ScenePlayer.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cpv668ph8f7vp" path="res://Characters/CharacterDisplayer.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://dsq2rbfiyycqj" path="res://Backgrounds/dani_bedroom.jpg" id="4"]
 [ext_resource type="Theme" uid="uid://c7cr0spg4jdwa" path="res://Theme/theme.tres" id="6"]
 
 [sub_resource type="Animation" id="Animation_kdtkl"]
@@ -109,7 +108,6 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-texture = ExtResource("4")
 expand_mode = 1
 
 [node name="CharacterDisplayer" parent="." unique_id=864660 instance=ExtResource("3")]

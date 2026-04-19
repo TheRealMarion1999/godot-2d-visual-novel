@@ -120,3 +120,6 @@ func _on_ChoiceSelector_choice_made(target_id: int) -> void:
 
 func _on_SkipButton_timer_ticked() -> void:
 	advance_dialogue()
+
+func clear():
+	text = ""

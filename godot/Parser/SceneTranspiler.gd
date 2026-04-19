@@ -157,6 +157,12 @@ class JumpCommandNode:
 	func _init(_next: int) -> void:
 		super(_next)
 
+class MarkCommandNode:
+	extends BaseNode
+	
+	func _init(_next: int) -> void:
+		super(_next)
+
 
 ## Node type for a command that will break out of any running code block.
 class PassCommandNode:
@@ -320,6 +326,7 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 		# it's finished.
 		pass
 
+	##TODO: recreate the jump from the associated point
 	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.JUMP:
 		# Jump to an existing jump point
 		var jump_point: String = expression.arguments[0].value
@@ -358,6 +365,7 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 				jump_node.next = dialogue_tree.index
 				temp.erase(jump_node)
 		_unresolved_jump_nodes = temp
+		command_node = MarkCommandNode.new(dialogue_tree.index + 1)
 
 	else:
 		push_error("Unrecognized command type `%s`" % expression.value)

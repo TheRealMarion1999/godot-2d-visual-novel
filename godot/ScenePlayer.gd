@@ -33,6 +33,17 @@ func run_scene() -> void:
 			else ResourceDB.get_narrator()
 		)
 
+		if node is SceneTranspiler.MarkCommandNode:
+			var BG = _background.texture
+			var left = _character_displayer._left_sprite.texture
+			var right = _character_displayer._right_sprite.texture
+			var container = {
+				"BG" : BG,
+				"L" : left,
+				"R" : right
+			}
+			Variables.add_marked_textures(key, container)
+
 		if node is SceneTranspiler.BackgroundCommandNode:
 			var bg: Background = ResourceDB.get_background(node.background)
 			_background.texture = bg.texture
@@ -65,7 +76,6 @@ func run_scene() -> void:
 		# Manage variables
 		elif node is SceneTranspiler.SetCommandNode:
 			Variables.add_variable(node.symbol, node.value)
-			##TODO: load a snapshot of what the BG, last line and all sprites looked like!
 			key = node.next
 
 		# Change to another scene
@@ -123,10 +133,19 @@ func run_scene() -> void:
 
 		# Ensures we don't get stuck in an infinite loop if there's no line to display.
 		else:
+			##If the next key is in the stored texture reload dictionary, immediately set all that and clear the dialogue box.
+			if node.next in Variables.test_data_dictionary.keys():
+				load_textures_from_mark(node.next)
+				_text_box.clear()
 			key = node.next
 
 	_character_displayer.hide()
 	scene_finished.emit()
+
+func load_textures_from_mark(key:int):
+	_background.texture = Variables.test_data_dictionary[key]["BG"]
+	_character_displayer._left_sprite.texture = Variables.test_data_dictionary[key]["L"]
+	_character_displayer._right_sprite.texture = Variables.test_data_dictionary[key]["R"]
 
 
 func load_scene(dialogue: SceneTranspiler.DialogueTree) -> void:
