@@ -1,4 +1,7 @@
+set started_over false
 mark jump_location
+
+song message_mb
 
 background dani_bedroom 
 

@@ -127,3 +127,5 @@ color = Color(0, 0, 0, 1)
 [node name="FadeAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1101442138]
 libraries/ = SubResource("AnimationLibrary_ypy62")
 autoplay = &"setup"
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=576585825]

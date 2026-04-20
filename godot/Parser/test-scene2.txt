@@ -35,7 +35,7 @@ choice:
 		dani "We gotta get out of here, man!"
 		sophia "Good call."
 
-
+song message_guitar
 "And thus started Sophia's and Dani's other journey at the Steppes..."
 
 transition fade_out

@@ -70,6 +70,14 @@ class BackgroundCommandNode:
 	func _to_string() -> String:
 		return "{next: %s, bg: %s, tr: %s}" % [next, background, transition]
 
+class SongCommandNode:
+	extends BaseNode
+	
+	var song: String
+	
+	func _init(_next: int, _song: String) -> void:
+		super(_next)
+		song = _song
 
 ## Node type for a command that makes the game jump to another scene (or restart
 ## the current one).
@@ -351,8 +359,6 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 		var value = expression.arguments[1].value
 		command_node = SetCommandNode.new(dialogue_tree.index + 1, symbol, value)
 
-	#TODO: copy the textures of the ScenePlayer's Background and CharacterDisplayer Nodes during the mark,
-	#so that when a jump is performed, no visual errors will occur.
 	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.MARK:
 		var new_jump_point: String = expression.arguments[0].value
 		_add_jump_point(new_jump_point, dialogue_tree.index)
@@ -366,6 +372,10 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 				temp.erase(jump_node)
 		_unresolved_jump_nodes = temp
 		command_node = MarkCommandNode.new(dialogue_tree.index + 1)
+
+	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.SONG:
+		var song: String = expression.arguments[0].value
+		command_node = SongCommandNode.new(dialogue_tree.index + 1, song)
 
 	else:
 		push_error("Unrecognized command type `%s`" % expression.value)

@@ -21,6 +21,7 @@ var _scene_data := {}
 @onready var _character_displayer := $CharacterDisplayer
 @onready var _anim_player: AnimationPlayer = $FadeAnimationPlayer
 @onready var _background := $Background
+@onready var _bgm := $BGM
 
 
 func run_scene() -> void:
@@ -48,6 +49,11 @@ func run_scene() -> void:
 			var bg: Background = ResourceDB.get_background(node.background)
 			_background.texture = bg.texture
 
+		if node is SceneTranspiler.SongCommandNode:
+			var bgm: Song = ResourceDB.get_song(node.song)
+			_bgm.stream = bgm.song
+			_bgm.play()
+
 		# Displaying a character.
 		if "character" in node && node.character != "":
 			var side: String = node.side if "side" in node else CharacterDisplayer.SIDE.LEFT
@@ -59,6 +65,8 @@ func run_scene() -> void:
 
 		# Normal text reply.
 		if "line" in node:
+			if !_text_box.visible:
+				_text_box.show()
 			_text_box.display(node.line, character.display_name)
 			await _text_box.next_requested
 			key = node.next
@@ -135,8 +143,11 @@ func run_scene() -> void:
 		else:
 			##If the next key is in the stored texture reload dictionary, immediately set all that and clear the dialogue box.
 			if node.next in Variables.test_data_dictionary.keys():
+				await _text_box.fade_out_async()
+				#TODO: perform fade outs for the background and characters as well.
 				load_textures_from_mark(node.next)
 				_text_box.clear()
+				_text_box.hide()
 			key = node.next
 
 	_character_displayer.hide()

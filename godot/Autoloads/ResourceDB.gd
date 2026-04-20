@@ -5,6 +5,7 @@ const NARRATOR_ID := "narrator"
 
 @onready var _characters := _load_resources("res://Characters/", "_is_character")
 @onready var _backgrounds := _load_resources("res://Backgrounds/", "_is_background")
+@onready var _songs := _load_resources("res://Sound/BGM", "_is_song")
 
 
 func get_character(character_id: String) -> Character:
@@ -18,6 +19,8 @@ func get_narrator() -> Character:
 func get_background(background_id: String) -> Background:
 	return _backgrounds.get(background_id)
 
+func get_song(song_id: String) -> Song:
+	return _songs.get(song_id)
 
 ## Finds and loads resources of a given type in `directory_path`.
 ## As we don't have generics in GDScript, we pass a function's name to do type checks.
@@ -51,3 +54,6 @@ func _is_character(resource: Resource) -> bool:
 
 func _is_background(resource: Resource) -> bool:
 	return resource is Background
+
+func _is_song(resource:Resource) -> bool:
+	return resource is Song
