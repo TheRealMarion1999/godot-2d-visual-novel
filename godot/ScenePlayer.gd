@@ -53,8 +53,17 @@ func run_scene() -> void:
 			var bgm: Song = ResourceDB.get_song(node.song)
 			_bgm.stream = bgm.song
 			_bgm.play()
+		
+		if node is SceneTranspiler.ShowCommandNode:
+			var side: String = node.side
+			var animation: String = node.animation
+			var expression: String = node.expression
+			_character_displayer.display(character, side, expression, animation)
+			##Make await conditional based on if we want to wait for the next node
+			if node._await:
+				await _character_displayer.display_finished
 
-		# Displaying a character.
+		# Displaying a character. ##Soon to be deprecated
 		if "character" in node && node.character != "":
 			var side: String = node.side if "side" in node else CharacterDisplayer.SIDE.LEFT
 			var animation: String = node.animation
@@ -63,8 +72,13 @@ func run_scene() -> void:
 			if not "line" in node:
 				await _character_displayer.display_finished
 
+		if "line" in node and node.line == "":
+			key = node.next
+			continue
+			
+
 		# Normal text reply.
-		if "line" in node:
+		if "line" in node && node.line != "":
 			if !_text_box.visible:
 				_text_box.show()
 			_text_box.display(node.line, character.display_name)

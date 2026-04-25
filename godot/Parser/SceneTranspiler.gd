@@ -90,6 +90,19 @@ class SceneCommandNode:
 		super(_next)
 		self.scene_path = _scene_path
 
+class ShowCommandNode:
+	extends BaseNode
+	
+	var character: String
+	var expression: String
+	var animation: String
+	var side: String
+	var _await: bool
+
+	func _init(_next: int, _character: String, _expression:String) -> void:
+		super(_next)
+		character = _character
+		expression = _expression
 
 ## Node type for a command that runs a scene transition animation, like a fade
 ## to black.
@@ -195,6 +208,7 @@ func transpile(syntax_tree: SceneParser.SyntaxTree, start_index: int) -> Dialogu
 			if node == null:
 				continue
 			dialogue_tree.append_node(node)
+
 
 		elif expression.type == SceneParser.EXPRESSION_TYPES.DIALOGUE:
 			# A dialogue node only needs the dialogue text, anything else is optional
@@ -321,6 +335,17 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 			command_node.transition = expression.arguments[1].value
 		else:
 			command_node.transition = ""
+
+	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.SHOW:
+		var character = expression.arguments[0].value
+		var emotion = expression.arguments[1].value
+		var animation = expression.arguments[2].value if len(expression.arguments) > 2 else ""
+		var side = expression.arguments[3].value if len(expression.arguments) > 3 else ""
+		var _await = true if len(expression.arguments) > 4 && expression.arguments[4].value == "wait" else false
+		command_node = ShowCommandNode.new(dialogue_tree.index + 1, character, emotion)
+		command_node.animation = animation
+		command_node.side = side
+		command_node._await = _await
 
 	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.SCENE:
 		# For now, the command only works when next_scene is used as an argument.

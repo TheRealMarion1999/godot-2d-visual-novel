@@ -9,6 +9,7 @@ signal display_finished
 ## Maps animation text ids to a function that animates a character sprite.
 const ANIMATIONS := {"enter": "_enter", "leave": "_leave", "test": "_test"}
 const SIDE := {LEFT = "left", RIGHT = "right"}
+const SIDE_POSITION := {LEFT = Vector2(330.836, 655.203), RIGHT = Vector2(1592.01, 655.203)}
 const COLOR_WHITE_TRANSPARENT = Color(1.0, 1.0, 1.0, 0.0)
 
 ## Keeps track of the character displayed on either side.
@@ -55,7 +56,7 @@ func _enter(from_side: String, sprite: Sprite2D) -> void:
 	var offset := -200 if from_side == SIDE.LEFT else 200
 
 	var start := sprite.position + Vector2(offset, 0.0)
-	var end := sprite.position
+	var end := SIDE_POSITION.LEFT if from_side == SIDE.LEFT else SIDE_POSITION.RIGHT
 	
 	_tween = create_tween()
 	_tween.finished.connect(_on_tween_finished)
@@ -69,6 +70,7 @@ func _enter(from_side: String, sprite: Sprite2D) -> void:
 	# We don't use Tween.seek(0.0) here since that could conflict with running tweens and make them jitter back and forth
 	sprite.position = start
 	sprite.modulate = COLOR_WHITE_TRANSPARENT
+	return
 
 
 func _leave(from_side: String, sprite: Sprite2D) -> void:

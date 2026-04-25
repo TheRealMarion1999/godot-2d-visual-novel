@@ -11,7 +11,8 @@ const BUILT_IN_COMMANDS := {
 	JUMP = "jump",
 	TRANSITION = "transition",
 	SET = "set",
-	SONG = "song"
+	SONG = "song",
+	SHOW = "show",
 }
 const CONDITIONAL_STATEMENTS := ["if", "elif", "else"]
 const BOOLEAN_OPERATORS := ["and", "or", "not"]

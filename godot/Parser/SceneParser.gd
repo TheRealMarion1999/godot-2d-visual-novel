@@ -223,10 +223,10 @@ class Parser:
 
 				# Push the character name to the front
 				arguments.push_front(current_token)
-
-				return FunctionExpression.new(
+				var test = FunctionExpression.new(
 					EXPRESSION_TYPES.DIALOGUE, parse_next_token().value, arguments
 				)
+				return test
 			else:
 				# Narrator line
 				return FunctionExpression.new(EXPRESSION_TYPES.DIALOGUE, current_token.value, [])
