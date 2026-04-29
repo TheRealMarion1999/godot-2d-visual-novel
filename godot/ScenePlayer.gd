@@ -15,7 +15,7 @@ const TRANSITIONS := {
 	fade_out = "_disappear_async",
 }
 
-var _scene_data := {}
+var _scene_data := { }
 
 @onready var _text_box := $TextBox
 @onready var _character_displayer := $CharacterDisplayer
@@ -39,9 +39,9 @@ func run_scene() -> void:
 			var left = _character_displayer._left_sprite.texture
 			var right = _character_displayer._right_sprite.texture
 			var container = {
-				"BG" : BG,
-				"L" : left,
-				"R" : right
+				"BG": BG,
+				"L": left,
+				"R": right,
 			}
 			Variables.add_marked_textures(key, container)
 
@@ -113,7 +113,7 @@ func run_scene() -> void:
 			if not variables_list.has("variables"):
 				push_error(
 					"The game tried to check a condition (if / elif), but no variables are saved yet.\n" +
-					"Add a `set` command before your first if / elif / else block. For example: 'set my_variable false'"
+					"Add a `set` command before your first if / elif / else block. For example: 'set my_variable false'",
 				)
 				key = node.next
 				continue
@@ -161,7 +161,8 @@ func run_scene() -> void:
 	_character_displayer.hide()
 	scene_finished.emit()
 
-func load_textures_from_mark(key:int):
+
+func load_textures_from_mark(key: int):
 	_background.texture = Variables.test_data_dictionary[key]["BG"]
 	_character_displayer._left_sprite.texture = Variables.test_data_dictionary[key]["L"]
 	_character_displayer._right_sprite.texture = Variables.test_data_dictionary[key]["R"]
@@ -178,11 +179,13 @@ func _appear_async() -> void:
 	await _text_box.fade_in_async()
 	transition_finished.emit()
 
+
 func default() -> void:
 	_anim_player.play("default")
 	await _anim_player.animation_finished
 	await _text_box.fade_in_async()
 	transition_finished.emit()
+
 
 func _disappear_async() -> void:
 	await _text_box.fade_out_async()

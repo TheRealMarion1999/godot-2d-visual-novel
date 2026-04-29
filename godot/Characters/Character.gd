@@ -5,7 +5,8 @@ extends Resource
 @export var id := "character_id"
 @export var display_name := "Display Name"
 @export var bio := "Fill this with the character's complete bio. Supports BBCode." # (String, MULTILINE)
-@export var age := 0: set = set_age
+@export var age := 0:
+	set = set_age
 
 ## Default key to use if the user doesn't specify the image to display
 @export var default_image := "neutral"

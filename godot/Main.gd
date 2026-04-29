@@ -1,7 +1,6 @@
 extends Node
 
-
-@export var scripts : Array[String]
+@export var scripts: Array[String]
 
 const SCENE_PLAYER := preload("res://ScenePlayer.tscn")
 
@@ -10,14 +9,12 @@ var SCENES := []
 var _current_index := -1
 var _scene_player: ScenePlayer
 
-
 var lexer := SceneLexer.new()
 var parser := SceneParser.new()
 var transpiler := SceneTranspiler.new()
 
 
 func _ready() -> void:
-
 	if not scripts.is_empty():
 		for script in scripts:
 			var text := lexer.read_file_content(script)

@@ -3,7 +3,7 @@ extends Button
 ## Emitted when the DelayTimer times out.
 signal timer_ticked
 
-@onready var _timer : Timer = $DelayTimer
+@onready var _timer: Timer = $DelayTimer
 
 
 func _ready() -> void:
