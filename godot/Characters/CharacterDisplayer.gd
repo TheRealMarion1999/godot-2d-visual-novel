@@ -7,7 +7,7 @@ extends Node
 signal display_finished
 
 ## Maps animation text ids to a function that animates a character sprite.
-const ANIMATIONS := {"enter": "_enter", "leave": "_leave", "test": "_test"}
+const ANIMATIONS := {"enter": "_enter", "leave": "_leave"}
 const SIDE := {LEFT = "left", RIGHT = "right"}
 const COLOR_WHITE_TRANSPARENT = Color(1.0, 1.0, 1.0, 0.0)
 

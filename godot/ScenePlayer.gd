@@ -110,6 +110,14 @@ func run_scene() -> void:
 		elif node is SceneTranspiler.ConditionalTreeNode:
 			var variables_list: Dictionary = Variables.get_stored_variables_list()
 
+			if not variables_list.has("variables"):
+				push_error(
+					"The game tried to check a condition (if / elif), but no variables are saved yet.\n" +
+					"Add a `set` command before your first if / elif / else block. For example: 'set my_variable false'"
+				)
+				key = node.next
+				continue
+
 			# Evaluate the if's condition
 			if (
 				variables_list["variables"].has(node.if_block.condition.value)
@@ -167,7 +175,6 @@ func load_scene(dialogue: SceneTranspiler.DialogueTree) -> void:
 func _appear_async() -> void:
 	_anim_player.play("fade_in")
 	await _anim_player.animation_finished
-	#await _text_box.fade_in_async().completed
 	await _text_box.fade_in_async()
 	transition_finished.emit()
 
@@ -178,7 +185,6 @@ func default() -> void:
 	transition_finished.emit()
 
 func _disappear_async() -> void:
-	#await _text_box.fade_out_async().completed
 	await _text_box.fade_out_async()
 	_anim_player.play("fade_out")
 	await _anim_player.animation_finished
