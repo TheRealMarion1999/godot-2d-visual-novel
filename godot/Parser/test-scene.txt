@@ -1,6 +1,7 @@
+set started_over false
 mark jump_location
 
-background dani_bedroom fade_in
+background dani_bedroom
 
 sophia happy enter left "Hi there! My name's Sophia. How about you?"
 dani neutral enter right "Hey, I'm Dani."
@@ -8,8 +9,8 @@ dani neutral enter right "Hey, I'm Dani."
 choice:
 	"Start over":
 		mark rethink
-		"Starting over?"	
-		choice:	
+		"Starting over?"
+		choice:
 			"Yes, I'm sure.":
 				"Alrighty then."
 				set started_over true
@@ -38,8 +39,8 @@ sophia "Well, let's continue."
 
 # Comments work!
 # "This is a commented out line"
-"Want to start over?" # Inline comment! 
-choice:	
+"Want to start over?" # Inline comment!
+choice:
 	"Yes":
 		set started_over true
 		jump jump_location
@@ -49,7 +50,7 @@ choice:
 		pass
 
 mark next_jump_point
-	
+
 "And thus started Sophia and Dani's journey."
 
 transition fade_out

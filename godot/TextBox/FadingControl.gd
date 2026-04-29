@@ -13,12 +13,18 @@ func _ready() -> void:
 func appear() -> void:
 	var _tween = create_tween()
 	_tween.tween_property(
-		self, "modulate", Color.WHITE, appear_duration
+		self,
+		"modulate",
+		Color.WHITE,
+		appear_duration,
 	).from(COLOR_WHITE_TRANSPARENT)
 
 
 func disappear() -> void:
 	var _tween = create_tween()
 	_tween.tween_property(
-		self, "modulate", COLOR_WHITE_TRANSPARENT, appear_duration / 2.0
+		self,
+		"modulate",
+		COLOR_WHITE_TRANSPARENT,
+		appear_duration / 2.0,
 	).from(Color.WHITE)
