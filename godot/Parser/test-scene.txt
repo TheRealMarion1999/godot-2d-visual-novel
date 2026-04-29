@@ -1,9 +1,7 @@
 set started_over false
 mark jump_location
 
-song message_mb
-
-background dani_bedroom 
+background dani_bedroom
 
 sophia happy enter left "Hi there! My name's Sophia. How about you?"
 dani neutral enter right "Hey, I'm Dani."
@@ -41,7 +39,7 @@ sophia "Well, let's continue."
 
 # Comments work!
 # "This is a commented out line"
-"Want to start over?" # Inline comment! 
+"Want to start over?" # Inline comment!
 choice:
 	"Yes":
 		set started_over true
@@ -52,7 +50,7 @@ choice:
 		pass
 
 mark next_jump_point
-	
+
 "And thus started Sophia and Dani's journey."
 
 transition fade_out
