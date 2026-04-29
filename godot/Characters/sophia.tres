@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://doo56slpsi3ke"]
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://doo56slpsi3ke"]
 
 [ext_resource type="Script" uid="uid://bn4x58vdls101" path="res://Characters/Character.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bpq0djo0dk6xd" path="res://Characters/Sophia/sophia_neutral.png" id="2"]
@@ -11,9 +11,6 @@
 script = ExtResource("1")
 id = "sophia"
 display_name = "Sophia"
-bio = "Fill this with the character's complete bio. Supports BBCode."
-age = 0
-default_image = "neutral"
 images = {
 "angry": ExtResource("4"),
 "happy": ExtResource("3"),

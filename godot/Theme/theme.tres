@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://c7cr0spg4jdwa"]
 
-[ext_resource type="FontFile" path="res://Theme/montserrat_extrabold.tres" id="1"]
+[ext_resource type="FontFile" uid="uid://cy3dl5ofmkltl" path="res://Theme/montserrat_extrabold.tres" id="1"]
 
 [sub_resource type="StyleBoxEmpty" id="1"]
 
