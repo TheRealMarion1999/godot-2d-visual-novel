@@ -9,9 +9,10 @@ signal choice_made(target_id)
 
 ## Speed at which the characters appear in the text body in characters per second.
 @export var display_speed := 20.0
-@export var text := "": set = set_bbcode_text
+@export var text := "":
+	set = set_bbcode_text
 
-@onready var _skip_button : Button = $MarginContainer/SkipButton
+@onready var _skip_button: Button = $MarginContainer/SkipButton
 
 @onready var _name_label: Label = $NameBackground/NameLabel
 @onready var _name_background: TextureRect = $NameBackground
@@ -94,7 +95,10 @@ func _begin_dialogue_display() -> void:
 	_tween = create_tween()
 	_tween.finished.connect(_on_tween_finished)
 	_tween.tween_property(
-		_rich_text_label, "visible_characters", character_count, character_count / display_speed
+		_rich_text_label,
+		"visible_characters",
+		character_count,
+		character_count / display_speed,
 	)
 
 

@@ -22,15 +22,16 @@ func get_background(background_id: String) -> Background:
 func get_song(song_id: String) -> Song:
 	return _songs.get(song_id)
 
+
 ## Finds and loads resources of a given type in `directory_path`.
 ## As we don't have generics in GDScript, we pass a function's name to do type checks.
 ## We call that function on each loaded resource with `call()`.
 func _load_resources(directory_path: String, check_type_function: String) -> Dictionary:
 	var directory := DirAccess.open(directory_path)
 	if not directory:
-		return {}
+		return { }
 
-	var resources := {}
+	var resources := { }
 
 	directory.list_dir_begin() # TODOConverter3To4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	var filename = directory.get_next()
@@ -55,5 +56,6 @@ func _is_character(resource: Resource) -> bool:
 func _is_background(resource: Resource) -> bool:
 	return resource is Background
 
-func _is_song(resource:Resource) -> bool:
+
+func _is_song(resource: Resource) -> bool:
 	return resource is Song

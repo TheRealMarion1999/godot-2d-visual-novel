@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c52hncojts061"]
+[gd_scene format=3 uid="uid://c52hncojts061"]
 
 [ext_resource type="Script" uid="uid://bpme70ry03bq4" path="res://TextBox/ChoiceSelector.gd" id="1"]
 
-[node name="ChoiceSelector" type="VBoxContainer"]
+[node name="ChoiceSelector" type="VBoxContainer" unique_id=998227816]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

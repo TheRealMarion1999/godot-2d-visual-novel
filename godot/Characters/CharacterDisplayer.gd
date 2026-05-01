@@ -13,7 +13,7 @@ const SIDE_POSITION := {LEFT = Vector2(330.836, 655.203), RIGHT = Vector2(1592.0
 const COLOR_WHITE_TRANSPARENT = Color(1.0, 1.0, 1.0, 0.0)
 
 ## Keeps track of the character displayed on either side.
-var _displayed := {left = null, right = null}
+var _displayed := { left = null, right = null }
 
 var _tween: Tween
 @onready var _left_sprite: Sprite2D = $Left
@@ -33,7 +33,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func display(character: Character, expression := "", side: String = SIDE.LEFT, animation := "") -> void:
 #	assert(side in SIDE.values())
-
 	# Keeps track of a character that's already displayed on a given side
 	var sprite: Sprite2D = _left_sprite if side == SIDE.LEFT else _right_sprite
 	if character == _displayed.left:
@@ -57,12 +56,14 @@ func _enter(from_side: String, sprite: Sprite2D) -> void:
 
 	var start := sprite.position + Vector2(offset, 0.0)
 	var end := SIDE_POSITION.LEFT if from_side == SIDE.LEFT else SIDE_POSITION.RIGHT
-	
 	_tween = create_tween()
 	_tween.finished.connect(_on_tween_finished)
 	_tween.set_parallel(true)
 	_tween.tween_property(
-		sprite, "position", end, 0.5
+		sprite,
+		"position",
+		end,
+		0.5,
 	).from(start).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT)
 	_tween.tween_property(sprite, "modulate", Color.WHITE, 0.25).from(COLOR_WHITE_TRANSPARENT)
 
@@ -83,7 +84,10 @@ func _leave(from_side: String, sprite: Sprite2D) -> void:
 	_tween.finished.connect(_on_tween_finished)
 	_tween.set_parallel(true)
 	_tween.tween_property(
-		sprite, "position", end, 0.5
+		sprite,
+		"position",
+		end,
+		0.5,
 	).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUINT).from(start)
 	_tween.tween_property(
 		sprite,

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 [gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://dsln2huih5io7"]
+=======
+[gd_resource type="Resource" script_class="Character" format=3 uid="uid://dsln2huih5io7"]
+>>>>>>> 082562c496e77f32ea9d0f9e8a6e78e016542a94
 
 [ext_resource type="Script" uid="uid://bn4x58vdls101" path="res://Characters/Character.gd" id="1"]
 
@@ -7,8 +11,11 @@ script = ExtResource("1")
 id = "narrator"
 display_name = "Narrator"
 bio = ""
+<<<<<<< HEAD
 age = 0
 default_image = "neutral"
 images = {
 &"neutral": null
 }
+=======
+>>>>>>> 082562c496e77f32ea9d0f9e8a6e78e016542a94

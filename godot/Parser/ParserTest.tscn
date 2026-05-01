@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 [gd_scene load_steps=2 format=3 uid="uid://bvqaib1h3jbde"]
 
 [ext_resource type="Script" uid="uid://d03q88bi68qt2" path="res://Parser/ParserTest.gd" id="1"]
 
 [node name="ParserTest" type="Node2D"]
+=======
+[gd_scene format=3 uid="uid://bvqaib1h3jbde"]
+
+[ext_resource type="Script" uid="uid://d03q88bi68qt2" path="res://Parser/ParserTest.gd" id="1"]
+
+[node name="ParserTest" type="Node2D" unique_id=1311513350]
+>>>>>>> 082562c496e77f32ea9d0f9e8a6e78e016542a94
 script = ExtResource("1")

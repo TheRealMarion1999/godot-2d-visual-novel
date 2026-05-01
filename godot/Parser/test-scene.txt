@@ -1,7 +1,7 @@
 set started_over false
 mark jump_location
 
-background dani_bedroom fade_in
+background dani_bedroom
 
 show sophia happy enter left
 show dani neutral enter right
@@ -43,7 +43,11 @@ sophia "Well, let's continue."
 
 # Comments work!
 # "This is a commented out line"
+<<<<<<< HEAD
 "Want to start over?" # Inline comment! 
+=======
+"Want to start over?" # Inline comment!
+>>>>>>> 082562c496e77f32ea9d0f9e8a6e78e016542a94
 choice:
 	"Yes":
 		set started_over true
@@ -54,7 +58,7 @@ choice:
 		pass
 
 mark next_jump_point
-	
+
 "And thus started Sophia and Dani's journey."
 
 transition fade_out
