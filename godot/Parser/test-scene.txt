@@ -1,15 +1,13 @@
 set started_over false
 mark jump_location
 
-song message_mb
+background dani_bedroom fade_in
 
-background dani_bedroom 
-
-show sophia neutral enter left
-show dani neutral enter right wait
-#show sophia neutral
+show sophia happy enter left
+show dani neutral enter right
 
 sophia happy "Hi there! My name's Sophia. How about you?"
+
 dani neutral "Hey, I'm Dani."
 
 choice:

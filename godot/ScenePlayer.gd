@@ -58,19 +58,17 @@ func run_scene() -> void:
 			var side: String = node.side
 			var animation: String = node.animation
 			var expression: String = node.expression
-			_character_displayer.display(character, side, expression, animation)
+			_character_displayer.display(character, expression, side, animation)
 			##Make await conditional based on if we want to wait for the next node
-			if node._await:
+			if _scene_data[node.next] is SceneTranspiler.ShowCommandNode:
+				pass
+			else:
 				await _character_displayer.display_finished
 
-		# Displaying a character. ##Soon to be deprecated
-		if "character" in node && node.character != "":
-			var side: String = node.side if "side" in node else CharacterDisplayer.SIDE.LEFT
-			var animation: String = node.animation
+		# Changes a character's expression and readies their line for display
+		if "line" in node && "character" in node && node.character != "":
 			var expression: String = node.expression
-			_character_displayer.display(character, side, expression, animation)
-			if not "line" in node:
-				await _character_displayer.display_finished
+			_character_displayer.display(character, expression)
 
 		if "line" in node and node.line == "":
 			key = node.next
@@ -91,7 +89,9 @@ func run_scene() -> void:
 				call(TRANSITIONS[node.transition])
 				await self.transition_finished
 			else:
-				call("default")
+				##TODO: if the next node doesn't have a line in it, do not display the text box.
+				#call("default")
+				default()
 				await transition_finished
 			key = node.next
 

@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_tween.kill()
 
 
-func display(character: Character, side: String = SIDE.LEFT, expression := "", animation := "") -> void:
+func display(character: Character, expression := "", side: String = SIDE.LEFT, animation := "") -> void:
 #	assert(side in SIDE.values())
 
 	# Keeps track of a character that's already displayed on a given side

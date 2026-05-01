@@ -97,7 +97,6 @@ class ShowCommandNode:
 	var expression: String
 	var animation: String
 	var side: String
-	var _await: bool
 
 	func _init(_next: int, _character: String, _expression:String) -> void:
 		super(_next)
@@ -341,11 +340,9 @@ func _transpile_command(dialogue_tree: DialogueTree, expression: SceneParser.Bas
 		var emotion = expression.arguments[1].value
 		var animation = expression.arguments[2].value if len(expression.arguments) > 2 else ""
 		var side = expression.arguments[3].value if len(expression.arguments) > 3 else ""
-		var _await = true if len(expression.arguments) > 4 && expression.arguments[4].value == "wait" else false
 		command_node = ShowCommandNode.new(dialogue_tree.index + 1, character, emotion)
 		command_node.animation = animation
 		command_node.side = side
-		command_node._await = _await
 
 	elif expression.value == SceneLexer.BUILT_IN_COMMANDS.SCENE:
 		# For now, the command only works when next_scene is used as an argument.
