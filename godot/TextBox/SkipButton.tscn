@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-[gd_scene load_steps=2 format=3 uid="uid://kccepl8ufij4"]
-
-[ext_resource type="Script" uid="uid://bxyailvpkxdlr" path="res://TextBox/SkipButton.gd" id="1"]
-
-[node name="SkipButton" type="Button"]
-self_modulate = Color(0.678431, 0.678431, 0.678431, 0.67451)
-=======
 [gd_scene format=3 uid="uid://kccepl8ufij4"]
 
 [ext_resource type="Script" uid="uid://bxyailvpkxdlr" path="res://TextBox/SkipButton.gd" id="1"]
@@ -13,7 +5,7 @@ self_modulate = Color(0.678431, 0.678431, 0.678431, 0.67451)
 [node name="SkipButton" type="Button" unique_id=224261460]
 self_modulate = Color(0.678431, 0.678431, 0.678431, 0.67451)
 anchors_preset = 3
->>>>>>> 082562c496e77f32ea9d0f9e8a6e78e016542a94
+
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -26,12 +18,9 @@ action_mode = 0
 keep_pressed_outside = true
 text = "SKIP"
 script = ExtResource("1")
-<<<<<<< HEAD
 __meta__ = {
 "_edit_use_anchors_": false
 }
-=======
->>>>>>> 082562c496e77f32ea9d0f9e8a6e78e016542a94
 
 [node name="DelayTimer" type="Timer" parent="." unique_id=322542735]
 wait_time = 0.1

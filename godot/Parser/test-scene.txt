@@ -43,11 +43,7 @@ sophia "Well, let's continue."
 
 # Comments work!
 # "This is a commented out line"
-<<<<<<< HEAD
 "Want to start over?" # Inline comment! 
-=======
-"Want to start over?" # Inline comment!
->>>>>>> 082562c496e77f32ea9d0f9e8a6e78e016542a94
 choice:
 	"Yes":
 		set started_over true
